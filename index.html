@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ECO WHITE| Natural Whitening Tooth Powder</title>
+    <style>
+        :root {
+            --primary-navy: #0e3082;
+            --light-blue-bg: #e3f2fd;
+            --accent-blue: #90caf9;
+            --white: #ffffff;
+            --text-dark: #333333;
+            --text-light: #555555;
+            --red-accent: #d32f2f;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            background-color: var(--white);
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* ===== NAVIGATION ===== */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 5%;
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: box-shadow 0.4s ease;
+        }
+
+        nav.scrolled {
+            box-shadow: 0 4px 20px rgba(14, 48, 130, 0.12);
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--primary-navy);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--primary-navy);
+            font-weight: 600;
+            margin-left: 2rem;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        /* Animated underline on nav links */
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent-blue);
+            transition: width 0.3s ease;
+        }
+        .nav-links a:hover::after { width: 100%; }
+        .nav-links a:hover { color: var(--accent-blue); }
+
+        /* WhatsApp Dropdown */
+        .wa-dropdown {
+            position: relative;
+            display: inline-block;
+            margin-left: 2rem;
+        }
+        .wa-dropbtn {
+            background-color: transparent;
+            color: var(--primary-navy);
+            font-weight: 600;
+            font-size: 1rem;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: inherit;
+            transition: color 0.3s;
+            padding: 0;
+        }
+        .wa-dropdown:hover .wa-dropdown-content,
+        .wa-dropdown:focus-within .wa-dropdown-content {
+            display: block;
+            animation: dropdownFade 0.25s ease forwards;
+        }
+        @keyframes dropdownFade {
+            from { opacity: 0; transform: translateY(-6px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+        .wa-dropdown-content {
+            display: none;
+            position: absolute;
+            right: 0;
+            top: 100%;
+            background-color: var(--white);
+            min-width: 210px;
+            box-shadow: 0px 10px 25px rgba(14, 48, 130, 0.15);
+            border-radius: 8px;
+            z-index: 1001;
+            overflow: hidden;
+            border-top: 10px solid transparent;
+            background-clip: padding-box;
+        }
+        .wa-dropdown-content a {
+            color: var(--text-dark);
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            margin-left: 0;
+            font-size: 0.95rem;
+            font-weight: 500;
+            border-bottom: 1px solid #f0f0f0;
+            transition: background-color 0.2s, color 0.2s, padding-left 0.2s;
+        }
+        .wa-dropdown-content a:last-child { border-bottom: none; }
+        .wa-dropdown-content a:hover {
+            background-color: #f8fcf8;
+            color: #25D366;
+            padding-left: 22px;
+        }
+
+        /* ===== SCROLL-TRIGGERED REVEAL (FADE-UP) ===== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .reveal-delay-1 { transition-delay: 0.1s; }
+        .reveal-delay-2 { transition-delay: 0.22s; }
+        .reveal-delay-3 { transition-delay: 0.34s; }
+
+        /* ===== HERO SECTION ===== */
+        .hero {
+            background: linear-gradient(135deg, var(--light-blue-bg) 0%, var(--white) 100%);
+            padding: 5rem 5%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            min-height: 70vh;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            flex: 1;
+            max-width: 600px;
+        }
+
+        /* Hero entrance animations */
+        .hero h2 {
+            font-size: 1.5rem;
+            color: var(--accent-blue);
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            animation: heroSlideIn 0.8s ease 0.1s both;
+        }
+        .hero h1 {
+            font-size: 3.5rem;
+            color: var(--primary-navy);
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            animation: heroSlideIn 0.8s ease 0.25s both;
+        }
+        .hero p {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            margin-bottom: 2rem;
+            animation: heroSlideIn 0.8s ease 0.4s both;
+        }
+        @keyframes heroSlideIn {
+            from { opacity: 0; transform: translateX(-30px); }
+            to   { opacity: 1; transform: translateX(0); }
+        }
+
+        /* ===== BUTTON MICRO-INTERACTIONS ===== */
+        .btn {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background-color: var(--primary-navy);
+            color: var(--white);
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 30px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            position: relative;
+            overflow: hidden;
+            transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
+            animation: heroSlideIn 0.8s ease 0.55s both;
+        }
+        .btn::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(255,255,255,0.15);
+            border-radius: 30px;
+            transform: scale(0);
+            opacity: 0;
+            transition: transform 0.4s ease, opacity 0.4s ease;
+        }
+        .btn:hover {
+            background-color: #0a2260;
+            transform: translateY(-3px) scale(1.03);
+            box-shadow: 0 10px 30px rgba(14, 48, 130, 0.35);
+        }
+        .btn:hover::after {
+            transform: scale(1);
+            opacity: 1;
+        }
+        .btn:active {
+            transform: translateY(0) scale(0.97);
+            box-shadow: 0 4px 12px rgba(14, 48, 130, 0.2);
+        }
+
+        /* ===== FLOATING PRODUCT IMAGES ===== */
+        .hero-image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            position: relative;
+            animation: heroSlideInRight 1s ease 0.2s both;
+        }
+        @keyframes heroSlideInRight {
+            from { opacity: 0; transform: translateX(40px); }
+            to   { opacity: 1; transform: translateX(0); }
+        }
+        @keyframes float {
+            0%   { transform: translateY(0px); }
+            50%  { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+        .floating-product {
+            animation: float 3s ease-in-out infinite;
+            max-width: 100%;
+            height: auto;
+            filter: drop-shadow(0 20px 30px rgba(14, 48, 130, 0.2));
+        }
+        .floating-tin-small {
+            display: block;
+            margin-top: 3rem;
+            width: 260px;
+            height: auto;
+            animation: float 2s ease-in-out infinite;
+            filter: drop-shadow(0 15px 25px rgba(14, 48, 130, 0.15));
+        }
+
+        /* ===== SECTIONS ===== */
+        section { padding: 5rem 5%; }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--primary-navy);
+            margin-bottom: 3rem;
+        }
+
+        /* ===== GRID ===== */
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        /* ===== HOVER LIFT FOR PRODUCT CARDS ===== */
+        .card {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 2rem;
+            border: 1px solid #eef3ff;
+            transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+                        box-shadow 0.35s ease,
+                        border-color 0.35s ease;
+        }
+        /* Animated accent bar on card top */
+        .card::before {
+            content: '';
+            display: block;
+            height: 3px;
+            width: 0;
+            background: linear-gradient(90deg, var(--primary-navy), var(--accent-blue));
+            border-radius: 2px;
+            margin-bottom: 1.5rem;
+            transition: width 0.4s ease;
+        }
+        .card:hover::before { width: 60px; }
+        .card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 50px rgba(14, 48, 130, 0.13);
+            border-color: var(--accent-blue);
+        }
+        .card h3 {
+            color: var(--primary-navy);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        /* ===== PARALLAX IMAGE WRAPPERS ===== */
+        .parallax-img-wrap {
+            overflow: hidden;
+            border-radius: 8px;
+            height: 200px;
+            margin-bottom: 1.5rem;
+        }
+        .parallax-img-wrap img {
+            width: 100%;
+            height: 130%;   /* Taller than container so it can travel */
+            object-fit: cover;
+            border-radius: 0;
+            margin-bottom: 0;
+            transform: translateY(0px);
+            will-change: transform;
+            transition: transform 0.08s linear;
+        }
+
+        /* Regular card images (non-parallax) */
+        .card img {
+            width: 100%;
+            height: 200px;
+            object-fit: contain;
+            margin-bottom: 1.5rem;
+            border-radius: 8px;
+            transition: transform 0.4s ease;
+        }
+        .card:hover img { transform: scale(1.05); }
+
+        /* ===== EDUCATION SECTION ===== */
+        .education {
+            background-color: var(--light-blue-bg);
+            border-radius: 20px;
+            margin: 0 5%;
+            padding: 4rem;
+        }
+        .education-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 3rem;
+            align-items: center;
+        }
+        .education-text {
+            flex: 1;
+            min-width: 300px;
+        }
+        .education-text p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        /* ===== INGREDIENT LIST ===== */
+        .ingredient-list { list-style: none; }
+        .ingredient-list li {
+            margin-bottom: 1rem;
+            padding-left: 2rem;
+            position: relative;
+            transition: padding-left 0.3s ease;
+        }
+        .ingredient-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--primary-navy);
+            font-weight: bold;
+            transition: transform 0.3s ease;
+        }
+        .ingredient-list li:hover { padding-left: 2.5rem; }
+        .ingredient-list li:hover::before { transform: scale(1.3); }
+
+        /* ===== INFO GRID (HOW TO USE) ===== */
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            background: var(--primary-navy);
+            color: var(--white);
+            padding: 4rem 5%;
+            margin-top: 3rem;
+        }
+        .info-box h3 {
+            color: var(--accent-blue);
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+        }
+        .info-box ul { list-style-type: none; }
+        .info-box ul li {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            padding-left: 1.5rem;
+            position: relative;
+            transition: transform 0.25s ease;
+        }
+        .info-box ul li:hover { transform: translateX(6px); }
+        .info-box .steps li::before {
+            content: '•';
+            color: var(--accent-blue);
+            position: absolute;
+            left: 0;
+            font-size: 1.5rem;
+            line-height: 1;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background-color: #06153b;
+            color: var(--white);
+            text-align: center;
+            padding: 3rem 5%;
+        }
+        .footer-contact { margin-bottom: 2rem; }
+        .footer-contact p {
+            margin: 0.5rem 0;
+            color: var(--accent-blue);
+            transition: color 0.3s ease, letter-spacing 0.3s ease;
+        }
+        .footer-contact p:hover {
+            color: var(--white);
+            letter-spacing: 0.5px;
+        }
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 1.5rem;
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+
+        /* ===== CARD IMG (utility class) ===== */
+        .card-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .hero { flex-direction: column; text-align: center; padding-top: 3rem; }
+            .nav-links { display: none; }
+            .info-grid { grid-template-columns: 1fr; }
+            .hero h1 { font-size: 2.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+<nav id="mainNav">
+    <div class="logo">Eco White</div>
+    <div class="nav-links">
+        <a href="#benefits">Benefits</a>
+        <a href="#oral-health">Oral Health</a>
+        <a href="#ingredients">Ingredients</a>
+        <a href="#usage">How to Use</a>
+        <div class="wa-dropdown">
+            <button class="wa-dropbtn" tabindex="0">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="#25D366" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                </svg>
+                Contact Us
+            </button>
+            <div class="wa-dropdown-content">
+                <a href="https://wa.me/447960685766?text=Hello%2C%20I%20am%20enquiring%20about%20Eco%20White%20from%20your%20website." target="_blank">🇬🇧 +44 796 068 5766</a>
+<a href="https://wa.me/256701512778?text=Hello%2C%20I%20am%20enquiring%20about%20Eco%20White%20from%20your%20website." target="_blank">🇺🇬 +256 701 512 778</a>
+<a href="https://wa.me/256702654161?text=Hello%2C%20I%20am%20enquiring%20about%20Eco%20White%20from%20your%20website." target="_blank">🇺🇬 +256 702 654 161</a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+    <div class="hero-content">
+        <h2>Whiten . Brighten . Fresh Breath</h2>
+        <h1>Natural Whitening Tooth Powder</h1>
+        <p><strong>Eco White</strong> is a premium blend of natural ingredients designed to whiten and brighten your teeth safely and effectively. Packaged in a convenient 100g jar, our formula is your natural solution to superior oral hygiene.</p>
+        <a href="#benefits" class="btn">Discover the Benefits</a>
+        <img src="jar-2.png" alt="Eco White Small Tin" class="floating-tin-small">
+    </div>
+    <div class="hero-image">
+        <img src="jar.png" alt="Eco White Tooth Powder 100g Jar" class="floating-product">
+    </div>
+</section>
+
+<!-- BENEFITS -->
+<section id="benefits">
+    <h2 class="section-title reveal">Why Choose Eco White?</h2>
+    <div class="grid-3">
+        <div class="card reveal reveal-delay-1">
+            <h3>Whitening & Brightening</h3>
+            <p>Say goodbye to stubborn surface stains caused by coffee, tea, and daily life. Our natural formula gently polishes the enamel, revealing your natural, bright smile without harsh chemical bleaches.</p>
+        </div>
+        <div class="card reveal reveal-delay-2">
+            <h3>Eliminates Bad Breath</h3>
+            <p>Confidence starts with fresh breath. Eco White targets the bacteria that cause halitosis, leaving your mouth feeling incredibly clean and your breath naturally fresh all day long.</p>
+        </div>
+        <div class="card reveal reveal-delay-3">
+            <h3>Helps with Toothaches & Gum Infections</h3>
+            <p>More than just a cosmetic upgrade, our carefully selected natural ingredients soothe irritated gums and provide relief from minor toothaches, promoting overall periodontal health.</p>
+        </div>
+    </div>
+</section>
+
+<!-- ORAL HEALTH -->
+<section id="oral-health" class="education" style="padding: 4rem;">
+    <h2 class="section-title reveal" style="margin-bottom: 2rem;">The Science of Natural Oral Health</h2>
+    <div class="education-content">
+        <div class="education-text reveal reveal-delay-1">
+            <p>General oral health is the foundation of overall well-being. Poor dental hygiene can lead to plaque buildup, tartar, gingivitis, and severe gum infections. Traditional toothpastes often rely on synthetic detergents and artificial abrasives that can degrade enamel over time.</p>
+            <p><strong>How Eco White Solves This:</strong></p>
+            <p>We believe nature provides the best defense. Instead of utilizing synthetic compounds, Eco White leverages the purifying power of earth-derived minerals and botanical extracts. By naturally balancing the pH in your mouth and providing gentle, non-destructive abrasion, our tooth powder removes plaque and bacteria safely.</p>
+            <p>By neutralizing the acids that weaken enamel and utilizing natural antimicrobial agents, Eco White not only restores the visual brilliance of your teeth but actively fortifies your gums against common infections.</p>
+        </div>
+    </div>
+</section>
+
+<!-- INGREDIENTS (with parallax powder images) -->
+<section id="ingredients">
+    <h2 class="section-title reveal">Premium Natural Ingredients</h2>
+    <div class="grid-3">
+        <!-- KAOLIN CLAY — Parallax -->
+        <div class="card reveal reveal-delay-1">
+            <div class="parallax-img-wrap">
+                <img src="kaolin-clay.png" alt="Kaolin Clay" class="parallax-target" data-speed="0.07">
+            </div>
+            <h3>Kaolin Clay</h3>
+            <p>A mild, natural clay that gently cleans and polishes the teeth. It binds to surface stains and toxins, whisking them away without scratching your delicate tooth enamel.</p>
+        </div>
+        <!-- CHARCOAL POWDER — Parallax -->
+        <div class="card reveal reveal-delay-2">
+            <div class="parallax-img-wrap">
+                <img src="charcoal-powder.png" alt="Charcoal Powder" class="parallax-target" data-speed="0.05">
+            </div>
+            <h3>Activated Charcoal Powder</h3>
+            <p>Highly porous activated charcoal acts like a magnet for plaque, tannins, and microscopic particles that stain teeth. It effectively detoxifies the mouth and balances pH levels.</p>
+        </div>
+        <!-- CLOVE POWDER — Parallax -->
+        <div class="card reveal reveal-delay-3">
+            <div class="parallax-img-wrap">
+                <img src="clove-powder.png" alt="Clove & Star Anise Powder" class="parallax-target" data-speed="0.09">
+            </div>
+            <h3>Botanical Powders</h3>
+            <ul class="ingredient-list">
+                <li><strong>Eugenia Caryophyllus Flower Bud Powder:</strong> Naturally rich in eugenol, it acts as a mild anesthetic to help with toothaches and possesses strong antimicrobial properties for gum health.</li>
+                <li><strong>Illicium Verum Fruit Powder:</strong> Adds a naturally refreshing flavor while aiding in eliminating the bacteria responsible for bad breath.</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<!-- USAGE -->
+<section id="usage" style="padding: 0;">
+    <div class="info-grid reveal">
+        <div class="info-box">
+            <h3>Direction For Use</h3>
+            <ul class="steps">
+                <li><strong>Wet your brush:</strong> Start with a clean, damp toothbrush.</li>
+                <li><strong>Dip the brush in the powder:</strong> You only need a small amount to cover the tips of the bristles.</li>
+                <li><strong>Brush for 2-3 minutes:</strong> Use gentle, circular motions just as you would with regular toothpaste.</li>
+                <li><strong>Rinse:</strong> Spit and rinse your mouth thoroughly.</li>
+                <li><strong>Routine:</strong> Brush twice daily for best results.</li>
+            </ul>
+        </div>
+        <div class="info-box">
+            <h3>Caution & Care</h3>
+            <ul class="steps">
+                <li>For external use only. Do not swallow large amounts.</li>
+                <li>Keep out of reach of children.</li>
+                <li>Store in a cool dry place to maintain powder consistency and ingredient potency.</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <div class="logo reveal" style="color: var(--white); margin-bottom: 1rem;">ECO WHITE TOOTH POWDER</div>
+    <p style="margin-bottom: 2rem;" class="reveal">Natural Whitening . 100g</p>
+    <div class="footer-contact reveal">
+        <p>Made in Uganda. Distributed in both uganda & UK.</p>
+        <p>For deliveries call;</p>
+        <p>📞 +44 796 068 5766 UNITED KINGDOM</p>
+        <p>📞 +256 701 512 778 ENTEBBE, Namulanda</p>
+        <p>📞 +256 702 654 161 KAMPALA</p>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2026 Eco White Tooth Powder. All rights reserved.</p>
+    </div>
+</footer>
+
+<script>
+    /* =============================================
+       1. SCROLL-TRIGGERED REVEAL (FADE-UP)
+       Uses IntersectionObserver — performant, no jank
+    ============================================= */
+    const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                revealObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+    /* =============================================
+       2. SMOOTH ANCHOR SCROLL (with nav offset)
+    ============================================= */
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            const id = this.getAttribute('href');
+            if (id === '#') return;
+            const target = document.querySelector(id);
+            if (!target) return;
+            e.preventDefault();
+            const navH = document.getElementById('mainNav').offsetHeight;
+            const pos = target.getBoundingClientRect().top + window.scrollY - navH - 20;
+            window.scrollTo({ top: pos, behavior: 'smooth' });
+        });
+    });
+
+    /* =============================================
+       3. NAV SHADOW ON SCROLL
+    ============================================= */
+    const nav = document.getElementById('mainNav');
+    window.addEventListener('scroll', () => {
+        nav.classList.toggle('scrolled', window.scrollY > 30);
+    }, { passive: true });
+
+    /* =============================================
+       4. PARALLAX POWDER IMAGES
+       Each powder image moves at a slightly different
+       speed than the scroll, creating subtle 3D depth.
+    ============================================= */
+    const parallaxImgs = document.querySelectorAll('.parallax-target');
+
+    function doParallax() {
+        parallaxImgs.forEach(img => {
+            const wrap = img.parentElement;
+            const rect = wrap.getBoundingClientRect();
+            const wh = window.innerHeight;
+            if (rect.bottom < 0 || rect.top > wh) return;
+
+            // centerOffset: -1 (top of viewport) to +1 (bottom of viewport)
+            const centerOffset = (rect.top + rect.height / 2 - wh / 2) / wh;
+            const speed = parseFloat(img.dataset.speed) || 0.07;
+            const shift = centerOffset * speed * wh;
+
+            img.style.transform = `translateY(${shift}px)`;
+        });
+    }
+
+    window.addEventListener('scroll', doParallax, { passive: true });
+    window.addEventListener('resize', doParallax, { passive: true });
+    doParallax();
+
+    /* =============================================
+       5. BUTTON CLICK RIPPLE EFFECT
+    ============================================= */
+    // Inject keyframe
+    const s = document.createElement('style');
+    s.textContent = '@keyframes rippleOut { to { transform: scale(1); opacity: 0; } }';
+    document.head.appendChild(s);
+
+    document.querySelectorAll('.btn').forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            const rect = this.getBoundingClientRect();
+            const size = Math.max(rect.width, rect.height) * 2;
+            const ripple = document.createElement('span');
+            ripple.style.cssText = `
+                position:absolute; width:${size}px; height:${size}px;
+                border-radius:50%; background:rgba(255,255,255,0.3);
+                transform:scale(0); animation:rippleOut 0.55s ease-out forwards;
+                left:${e.clientX - rect.left - size/2}px;
+                top:${e.clientY - rect.top - size/2}px;
+                pointer-events:none;
+            `;
+            this.appendChild(ripple);
+            setTimeout(() => ripple.remove(), 600);
+        });
+    });
+</script>
+
+</body>
+</html>
