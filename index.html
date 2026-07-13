@@ -645,7 +645,19 @@
             window.scrollTo({ top: pos, behavior: 'smooth' });
         });
     });
+document.addEventListener('DOMContentLoaded', function () {
+    const waDropdown = document.querySelector('.wa-dropdown');
+    const waBtn = document.querySelector('.wa-dropbtn');
 
+    waBtn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        waDropdown.classList.toggle('open');
+    });
+
+    document.addEventListener('click', function () {
+        waDropdown.classList.remove('open');
+    });
+});
     /* =============================================
        3. NAV SHADOW ON SCROLL
     ============================================= */
